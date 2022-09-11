@@ -16,3 +16,36 @@ window.addEventListener('DOMContentLoaded', function() {
         scene.render();
     })
 });
+
+// <script src="https://preview.babylonjs.com/babylon.js"></script>
+// <script src="https://preview.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
+// <script src="https://preview.babylonjs.com/gltf_validator.js"></script>
+
+var canvas = document.getElementById("renderCanvas");
+var createScene = function() {
+    var scene = new BABYLON.Scene(engine);
+
+    var environment = scene.createDefaultEnvironment({
+        enableGroundShadow: true,
+        groundYBias: 1
+    });
+
+    var vrHelper = scene.createDefaultVRExperience({
+        createDeviceOrientationCamera: false
+    });
+    vrHelper.enableTeleportation({floorMeshes: [environment.ground]});
+
+    var building = BABYLON.SceneLoader.Append("./", "assets/img/Test3DModel.glb", scene, function (meshes) {
+        scene.createDefaultCameraOrLight(true, true, true);
+    });
+    return scene;
+};
+
+var engine = new BABYLON.Engine(canvas, true, {preserveDrawingBuffer: true, stencil: true});
+var scene = createScene();
+
+engine.runRenderLoop(function() {
+    if(scene) {
+        scene.render();
+    }
+})

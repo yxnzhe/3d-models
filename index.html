@@ -2,49 +2,15 @@
 <html>
     <head>
         <title>3D Models</title>
-        <!-- <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script> -->
-        <!-- <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script> -->
+        <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+        <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
         <link rel="stylesheet" href="assets/css/style.css">
-        <script src="https://preview.babylonjs.com/babylon.js"></script>
-        <script src="https://preview.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
-        <script src="https://preview.babylonjs.com/gltf_validator.js"></script>
     </head>
     <body>
         <h1>3D Model Page</h1>
-        <!-- <div class="container">
+        <div class="container">
             <model-viewer src="assets/img/rzyas_military_suit.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls poster="poster.webp" shadow-intensity="1"> </model-viewer>                
-        </div> -->
-        <canvas id="renderCanvas"></canvas>
-        <script>
-            var canvas = document.getElementById("renderCanvas");
-
-            var createScene = function() {
-                var scene = new BABYLON.Scene(engine);
-
-                var environment = scene.createDefaultEnvironment({
-                    enableGroundShadow: true,
-                    groundYBias: 1
-                });
-
-                var vrHelper = scene.createDefaultVRExperience({
-                    createDeviceOrientationCamera: false
-                });
-                vrHelper.enableTeleportation({floorMeshes: [environment.ground]});
-
-                var building = BABYLON.SceneLoader.Append("./", "assets/img/Test3DModel.glb", scene, function (meshes) {
-                    scene.createDefaultCameraOrLight(true, true, true);
-                });
-                return scene;
-            };
-
-            var engine = new BABYLON.Engine(canvas, true, {preserveDrawingBuffer: true, stencil: true});
-            var scene = createScene();
-
-            engine.runRenderLoop(function() {
-                if(scene) {
-                    scene.render();
-                }
-            })
-        </script>
+        </div>
+        <!-- <canvas id="renderCanvas"></canvas> -->
     </body>
 </html>
